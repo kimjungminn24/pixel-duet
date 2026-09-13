@@ -201,7 +201,16 @@ function browserLang() {
   return l.toLowerCase().startsWith("ko") ? "ko" : "en";
 }
 
-export let lang = STRINGS[storedLang()] ? storedLang() : browserLang();
+function requestedLang() {
+  try {
+    return new URLSearchParams(location.search).get("lang");
+  } catch {
+    return null;
+  }
+}
+
+export let lang = STRINGS[requestedLang()] ? requestedLang()
+  : STRINGS[storedLang()] ? storedLang() : browserLang();
 
 export function t(key, vars = {}) {
   const s = STRINGS[lang][key] ?? STRINGS.ko[key] ?? key;
