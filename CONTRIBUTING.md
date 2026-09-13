@@ -31,3 +31,13 @@ Open an issue with the canvas size, the tool or command involved, and
 what the log panel said. `pixelduet version` prints the build you are
 on. If the model drew something wrong, the digit grid from read_pixels
 is more useful than a screenshot.
+
+## Releasing
+
+    git tag v0.2.0
+    git push origin v0.2.0
+
+The release workflow runs the tests, builds binaries for six platforms,
+creates the GitHub Release, and publishes the npm package through
+Trusted Publishing. No secrets are involved: npmjs.com is configured
+to accept release.yml from this repository as the package's publisher.
