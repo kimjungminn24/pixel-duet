@@ -1,0 +1,21 @@
+{
+  "name": "pixelduet",
+  "version": "0.0.0",
+  "description": "A pixel canvas a model and a person share. Claude draws it stroke by stroke while you watch, pause, edit and talk.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kimjungminn24/pixel-duet.git"
+  },
+  "keywords": ["pixel-art", "claude", "claude-code", "terminal", "canvas"],
+  "bin": {
+    "pixelduet": "bin/pixelduet.js"
+  },
+  "files": ["bin", "install.js", "README.md"],
+  "scripts": {
+    "postinstall": "node install.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#51435f">
+<title>pixelduet</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg class="icon-defs" aria-hidden="true">
+  <symbol id="i-pen" viewBox="0 0 16 16"><path fill="currentColor" d="M11 1h2v1H11zM10 2h1v1H10zM13 2h1v1H13zM9 3h1v1H9zM12 3h1v1H12zM8 4h4v1H8zM7 5h1v1H7zM10 5h1v1H10zM6 6h1v1H6zM9 6h1v1H9zM5 7h1v1H5zM8 7h1v1H8zM4 8h1v1H4zM7 8h1v1H7zM3 9h1v1H3zM6 9h1v1H6zM2 10h1v1H2zM5 10h1v1H5zM2 11h3v1H2zM2 12h2v1H2zM1 13h2v1H1z"/></symbol>
+  <symbol id="i-eraser" viewBox="0 0 16 16"><path fill="currentColor" d="M7 2h5v1H7zM6 3h1v1H6zM12 3h1v1H12zM5 4h1v1H5zM13 4h1v1H13zM4 5h1v1H4zM12 5h1v1H12zM3 6h1v1H3zM11 6h1v1H11zM2 7h1v1H2zM5 7h1v1H5zM10 7h1v1H10zM1 8h1v1H1zM6 8h1v1H6zM9 8h1v1H9zM1 9h1v1H1zM7 9h2v1H7zM2 10h1v1H2zM7 10h1v1H7zM3 11h1v1H3zM6 11h1v1H6zM4 12h2v1H4zM4 13h11v1H4z"/></symbol>
+  <symbol id="i-line" viewBox="0 0 16 16"><path fill="currentColor" d="M13 2h1v1H13zM12 3h1v1H12zM11 4h1v1H11zM10 5h1v1H10zM9 6h1v1H9zM8 7h1v1H8zM7 8h1v1H7zM6 9h1v1H6zM5 10h1v1H5zM4 11h1v1H4zM3 12h1v1H3zM2 13h1v1H2z"/></symbol>
+  <symbol id="i-pick" viewBox="0 0 16 16"><path fill="currentColor" d="M10 1h3v1H10zM9 2h5v1H9zM9 3h5v1H9zM8 4h5v1H8zM7 5h5v1H7zM6 6h2v1H6zM9 6h2v1H9zM5 7h2v1H5zM8 7h2v1H8zM4 8h2v1H4zM7 8h2v1H7zM3 9h2v1H3zM6 9h2v1H6zM2 10h2v1H2zM5 10h2v1H5zM2 11h1v1H2zM4 11h2v1H4zM2 12h3v1H2zM1 13h2v1H1z"/></symbol>
+  <symbol id="i-rect" viewBox="0 0 16 16"><path fill="currentColor" d="M2 3h12v1H2zM2 4h1v8H2zM13 4h1v8H13zM2 12h12v1H2z"/></symbol>
+  <symbol id="i-circle" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h4v1H6zM4 3h2v1H4zM10 3h2v1H10zM3 4h1v2H3zM12 4h1v2H12zM2 6h1v4H2zM13 6h1v4H13zM3 10h1v2H3zM12 10h1v2H12zM4 12h2v1H4zM10 12h2v1H10zM6 13h4v1H6z"/></symbol>
+  <symbol id="i-fill" viewBox="0 0 16 16"><path fill="currentColor" d="M5 1h2v1H5zM4 2h1v1H4zM7 2h1v1H7zM4 3h1v1H4zM8 3h1v1H8zM3 4h2v1H3zM9 4h1v1H9zM2 5h1v1H2zM5 5h1v1H5zM10 5h1v1H10zM1 6h1v1H1zM6 6h1v1H6zM11 6h2v1H11zM2 7h1v1H2zM10 7h1v1H10zM13 7h1v1H13zM3 8h1v1H3zM9 8h1v1H9zM13 8h1v1H13zM4 9h1v1H4zM8 9h1v1H8zM12 9h3v1H12zM5 10h1v1H5zM7 10h1v1H7zM12 10h3v1H12zM6 11h1v1H6zM13 11h1v1H13zM2 13h8v1H2z"/></symbol>
+  <symbol id="i-solid-rect" viewBox="0 0 16 16"><path fill="currentColor" d="M2 3h12v10H2z"/></symbol>
+  <symbol id="i-solid-circle" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h4v1H6zM4 3h8v1H4zM3 4h10v2H3zM2 6h12v4H2zM3 10h10v2H3zM4 12h8v1H4zM6 13h4v1H6z"/></symbol>
+  <symbol id="i-zoom-out" viewBox="0 0 16 16"><path fill="currentColor" d="M4 1h4v1H4zM2 2h2v1H2zM8 2h2v1H8zM2 3h1v1H2zM9 3h1v1H9zM1 4h1v1H1zM10 4h1v1H10zM1 5h1v1H1zM10 5h1v1H10zM1 6h1v1H1zM4 6h4v1H4zM10 6h1v1H10zM1 7h1v1H1zM10 7h1v1H10zM2 8h1v1H2zM9 8h1v1H9zM2 9h2v1H2zM8 9h3v1H8zM4 10h4v1H4zM9 10h3v1H9zM10 11h3v1H10zM11 12h3v1H11zM12 13h2v1H12z"/></symbol>
+  <symbol id="i-zoom-in" viewBox="0 0 16 16"><path fill="currentColor" d="M4 1h4v1H4zM2 2h2v1H2zM8 2h2v1H8zM2 3h1v1H2zM9 3h1v1H9zM1 4h1v1H1zM6 4h1v1H6zM10 4h1v1H10zM1 5h1v1H1zM6 5h1v1H6zM10 5h1v1H10zM1 6h1v1H1zM4 6h4v1H4zM10 6h1v1H10zM1 7h1v1H1zM6 7h1v1H6zM10 7h1v1H10zM2 8h1v1H2zM6 8h1v1H6zM9 8h1v1H9zM2 9h2v1H2zM8 9h3v1H8zM4 10h4v1H4zM9 10h3v1H9zM10 11h3v1H10zM11 12h3v1H11zM12 13h2v1H12z"/></symbol>
+  <symbol id="i-pan" viewBox="0 0 16 16"><path fill="currentColor" d="M7 1h2v1H7zM6 2h4v1H6zM5 3h6v1H5zM7 4h2v1H7zM3 5h1v1H3zM7 5h2v1H7zM12 5h1v1H12zM2 6h2v1H2zM7 6h2v1H7zM12 6h2v1H12zM1 7h14v1H1zM1 8h14v1H1zM2 9h2v1H2zM7 9h2v1H7zM12 9h2v1H12zM3 10h1v1H3zM7 10h2v1H7zM12 10h1v1H12zM7 11h2v1H7zM5 12h6v1H5zM6 13h4v1H6zM7 14h2v1H7z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 14 14"><path fill="currentColor" d="M3 1h2v2h2v2h2v1h2v2H9v1H7v2H5v2H3z"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 14 14"><path fill="currentColor" d="M2 2h10v10H2z"/></symbol>
+</svg>
+
+<div class="wrap">
+
+<header>
+  <svg class="brand-icon" viewBox="0 0 12 12" aria-hidden="true"><path fill="currentColor" d="M1 1h4v2h2v2H5v2H1V1zm6 4h4v6H7V9H5V7h2V5z"/><path fill="#f4f1e9" d="M2 2h2v2H2zm6 6h2v2H8z"/></svg>
+  <h1 aria-label="pixelduet"><svg class="wordmark" viewBox="0 0 59 7" aria-hidden="true"><path fill="currentColor" d="M0 0h4v1H0zM0 1h1v1H0zM4 1h1v1H4zM0 2h1v1H0zM4 2h1v1H4zM0 3h4v1H0zM0 4h1v3H0zM7 0h3v1H7zM8 1h1v5H8zM7 6h3v1H7zM12 0h1v2h-1zM16 0h1v2h-1zM13 2h1v1h-1zM15 2h1v1h-1zM14 3h1v1h-1zM13 4h1v1h-1zM15 4h1v1h-1zM12 5h1v2h-1zM16 5h1v2h-1zM19 0h5v1h-5zM19 1h1v6h-1zM20 3h3v1h-3zM20 6h4v1h-4zM26 0h1v7h-1zM27 6h4v1h-4zM33 0h4v1h-4zM33 1h1v5h-1zM37 1h1v5h-1zM33 6h4v1h-4zM40 0h1v6h-1zM44 0h1v6h-1zM41 6h3v1h-3zM47 0h5v1h-5zM47 1h1v6h-1zM48 3h3v1h-3zM48 6h4v1h-4zM54 0h5v1h-5zM56 1h1v6h-1z"/></svg></h1>
+
+  <div class="transport" role="group" data-i18n-aria="transport.aria" aria-label="AI 재생 제어">
+    <button id="play" data-i18n-title="play" data-i18n-aria="play" title="AI 재생" aria-label="AI 재생"><svg width="14" height="14" aria-hidden="true"><use href="#i-play"/></svg></button>
+    <button id="pause" data-i18n-title="pause" data-i18n-aria="pause" title="AI 정지" aria-label="AI 정지"><svg width="14" height="14" aria-hidden="true"><use href="#i-stop"/></svg></button>
+    <span id="playState" role="status">연결 중</span>
+  </div>
+  <div class="connection" id="connection" data-state="connecting">
+    <span class="dot"></span><span id="status" role="status">연결 중…</span>
+  </div>
+  <button id="lang" class="lang" data-i18n="lang.switch" data-i18n-title="lang.title" title="Switch to English">EN</button>
+</header>
+
+<main id="app">
+
+<aside class="card toolbox" data-i18n-aria="toolbox.aria" aria-label="그리기 도구">
+  <div class="section-head"><span data-i18n="tools">도구</span></div>
+  <div class="tools-body">
+    <div>
+      <div class="small-label" data-i18n="tools.drawing">그리기 도구</div>
+      <div class="tool-grid" id="toolbar">
+        <button id="t-pen" class="active" data-i18n-title="tool.pen.title" title="펜 (B)" aria-pressed="true"><svg class="pixel-icon" aria-hidden="true"><use href="#i-pen"/></svg><span data-i18n="tool.pen">펜</span><span class="key">B</span></button>
+        <button id="t-eraser" data-i18n-title="tool.eraser.title" title="지우개 (E)" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-eraser"/></svg><span data-i18n="tool.eraser">지우개</span></button>
+        <button id="t-line" data-i18n-title="tool.line.title" title="직선 (L)" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-line"/></svg><span data-i18n="tool.line">직선</span></button>
+        <button id="t-pick" data-i18n-title="tool.pick.title" title="색 추출 (I)" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-pick"/></svg><span data-i18n="tool.pick">추출</span></button>
+        <button id="t-rect" data-i18n-title="tool.rect.title" title="사각형 (R)" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-rect"/></svg><span data-i18n="tool.rect">사각형</span></button>
+        <button id="t-circle" data-i18n-title="tool.circle.title" title="원 (O)" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-circle"/></svg><span data-i18n="tool.circle">원</span></button>
+        <button id="t-fill" data-i18n-title="tool.fill.title" title="채우기 (F)" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-fill"/></svg><span data-i18n="tool.fill">채우기</span></button>
+        <button id="t-solidRect" data-i18n-title="tool.solidRect.title" title="채운 사각형 (U)" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-solid-rect"/></svg><span data-i18n="tool.solidRect">채운 사각형</span></button>
+        <button id="t-solidCircle" data-i18n-title="tool.solidCircle.title" title="채운 원 (P)" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-solid-circle"/></svg><span data-i18n="tool.solidCircle">채운 원</span></button>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="palette-heading">
+        <span data-i18n="palette">팔레트</span>
+        <div class="palette-actions">
+          <button id="paletteMinus" data-i18n-title="palette.smaller" data-i18n-aria="palette.smaller" title="팔레트 축소" aria-label="팔레트 축소"><svg class="pixel-icon" aria-hidden="true"><use href="#i-zoom-out"/></svg></button>
+          <button id="palettePlus" data-i18n-title="palette.larger" data-i18n-aria="palette.larger" title="팔레트 확대" aria-label="팔레트 확대"><svg class="pixel-icon" aria-hidden="true"><use href="#i-zoom-in"/></svg></button>
+          <button id="colors" aria-expanded="false" aria-controls="colorPanel" data-i18n="palette.edit">편집</button>
+        </div>
+      </div>
+      <div id="palette" role="group" data-i18n-aria="palette.aria" aria-label="색상 팔레트"></div>
+      <div class="selected-color"><span id="selectedChip"></span><span id="selectedHex"></span></div>
+      <div id="colorPanel"></div>
+    </div>
+  </div>
+</aside>
+
+<section class="workspace" data-i18n-aria="workspace.aria" aria-label="캔버스 작업 공간">
+  <div class="card stage">
+    <div class="stage-top">
+      <div class="stage-actions">
+        <div class="zoom-controls" role="group" data-i18n-aria="zoom.aria" aria-label="캔버스 배율">
+          <button id="zoomOut" data-i18n-title="zoom.out" data-i18n-aria="zoom.out.aria" title="축소" aria-label="캔버스 축소"><svg class="pixel-icon" aria-hidden="true"><use href="#i-zoom-out"/></svg></button>
+          <input id="zoom" type="range" min="0" max="7" step="0.05" value="4" data-i18n-aria="zoom.aria" aria-label="캔버스 배율">
+          <button id="zoomIn" data-i18n-title="zoom.in" data-i18n-aria="zoom.in.aria" title="확대" aria-label="캔버스 확대"><svg class="pixel-icon" aria-hidden="true"><use href="#i-zoom-in"/></svg></button>
+          <output id="zoomValue" for="zoom"></output>
+          <button id="zoomFit" data-i18n="zoom.fit" data-i18n-title="zoom.fit.title" title="화면 맞춤">맞춤</button>
+          <button id="pan" data-i18n-title="pan.title" data-i18n-aria="pan.aria" title="화면 이동 (H / Space + 드래그)" aria-label="화면 이동" aria-pressed="false"><svg class="pixel-icon" aria-hidden="true"><use href="#i-pan"/></svg></button>
+        </div>
+        <button id="undo" data-i18n="undo" data-i18n-title="undo.title" title="실행 취소 (Ctrl / ⌘ + Z)">↶ 취소</button>
+        <button id="gridBtn" data-i18n="grid" data-i18n-title="grid.title" aria-pressed="false" title="픽셀 격자 (G)">▦ 격자</button>
+      </div>
+    </div>
+    <div class="board"><div class="canvas-mount"><canvas id="cv" width="512" height="512" data-i18n-aria="canvas.aria" aria-label="픽셀 캔버스"></canvas></div></div>
+    <div class="canvas-status">
+      <span id="dimensions">32 × 32 PX</span>
+      <span id="coordinates">(-, -)</span>
+    </div>
+  </div>
+
+  <div class="workspace-bottom">
+    <label class="field"><span data-i18n="size">캔버스 크기</span>
+      <select id="size" data-i18n-title="size.title" title="크기를 바꾸면 새 캔버스를 시작합니다">
+        <option value="32">32 × 32</option>
+        <option value="64">64 × 64</option>
+        <option value="128">128 × 128</option>
+      </select>
+    </label>
+    <div><button id="clear" data-i18n="clear">초기화</button><button id="save" class="save-button" data-i18n="save">저장</button></div>
+  </div>
+  <div class="save-fields">
+    <label><span data-i18n="save.folder">저장 폴더</span>
+      <span class="folder-controls">
+        <input id="saveFolder" readonly data-i18n-placeholder="save.folder.placeholder" data-i18n-title="save.folder" placeholder="기본 저장 폴더" title="저장 폴더">
+        <button id="chooseFolder" type="button" data-i18n="save.choose" data-i18n-title="save.choose.title" title="저장 폴더 선택">폴더 선택…</button>
+        <button id="resetFolder" type="button" data-i18n-title="save.reset" data-i18n-aria="save.reset" title="기본 저장 폴더로 변경" aria-label="기본 저장 폴더로 변경">↶</button>
+      </span>
+    </label>
+    <label><span data-i18n="save.name">파일 이름</span><input id="saveName" value="untitled" maxlength="64" autocomplete="off" spellcheck="false" pattern="[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}"></label>
+  </div>
+  <div id="saved" role="status" data-i18n-title="save.path" title="저장 경로"></div>
+</section>
+
+<aside class="card panel" data-i18n-aria="chat.aria" aria-label="AI와 대화">
+  <div class="section-head"><span data-i18n="chat">대화</span></div>
+  <div id="log" role="log" data-i18n-aria="chat.log" aria-label="대화 기록" aria-live="polite"></div>
+  <div class="compose-wrap">
+    <div class="compose">
+      <input id="note" data-i18n-placeholder="chat.placeholder" data-i18n-aria="chat.input" placeholder="메시지 입력" aria-label="AI에게 메시지" autocomplete="off">
+      <button id="send" data-i18n-title="chat.send" data-i18n-aria="chat.send" title="메시지 보내기" aria-label="메시지 보내기">↑</button>
+    </div>
+  </div>
+  <div class="playback">
+    <label class="field speed-field" for="speed"><span data-i18n="speed">그리기 속도</span><span id="speedVal">최대 속도</span></label>
+    <input id="speed" data-i18n-aria="speed.aria" aria-label="그리기 속도" type="range" min="0" max="3000" step="50" value="0">
+    <div class="range-labels"><span data-i18n="speed.min">빠르게</span><span data-i18n="speed.max">천천히</span></div>
+  </div>
+</aside>
+
+</main>
+
+<footer class="footer"><span data-i18n="footer">펜 B | 지우개 E | 직선 L | 사각형 R | 원 O | 채우기 F | 추출 I | 격자 G | 이동 H</span></footer>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
