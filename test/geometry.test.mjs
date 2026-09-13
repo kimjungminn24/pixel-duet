@@ -1,6 +1,3 @@
-// The browser's shape math, checked against the same facts shapes_test.go
-// checks for the Go side, so a line the person drags and a line the
-// model draws stay the same line. Run with: node --test test/geometry.test.mjs
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { lineCells, rectCells, shapeCells, floodCells } from "../internal/web/static/js/geometry.js";
@@ -26,7 +23,6 @@ test("a circle is round and stays square near the edge", () => {
   assert.deepEqual([...rows.values()], [3, 5, 7, 7, 7, 5, 3]);
   assert.equal(shapeCells("circle", 7, 7, 13, 13, 16, 16).length, 16);
 
-  // Dragging past the right edge clamps the side, so it stays a circle.
   const clamped = shapeCells("solidCircle", 6, 0, 30, 3, 8, 8);
   assert.ok(clamped.every(([x, y]) => x <= 7 && y <= 1));
 });

@@ -1,5 +1,3 @@
-// The two languages have to cover the same keys, or a switch leaves a
-// Korean word on an English page. Run with: node --test test/i18n.test.mjs
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";

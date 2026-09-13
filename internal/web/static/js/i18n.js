@@ -196,8 +196,12 @@ function storedLang() {
   }
 }
 
-export let lang = STRINGS[storedLang()] ? storedLang()
-  : (navigator.language || "").toLowerCase().startsWith("ko") ? "ko" : "en";
+function browserLang() {
+  const l = typeof navigator === "undefined" ? "" : navigator.language || "";
+  return l.toLowerCase().startsWith("ko") ? "ko" : "en";
+}
+
+export let lang = STRINGS[storedLang()] ? storedLang() : browserLang();
 
 export function t(key, vars = {}) {
   const s = STRINGS[lang][key] ?? STRINGS.ko[key] ?? key;

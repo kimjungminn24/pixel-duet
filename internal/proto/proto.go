@@ -10,7 +10,7 @@ import (
 	"github.com/kimjungminn24/pixel-duet/internal/canvas"
 )
 
-// Wire format, one command or Reply per line:
+// Wire format, one command or reply per line:
 //
 //	client -> server   hello [view]    view clients edit as a person; never held
 //	                   set <x> <y> <c>
@@ -37,7 +37,7 @@ import (
 //
 // state, log, palette and speed are pushed on connect and on change.
 // edits/box describe what a view client changed while a drawer was held.
-// note carries every note queued since the last Reply, joined with " / ".
+// note carries every note queued since the last reply, joined with " / ".
 
 const endMarker = "."
 
@@ -54,7 +54,7 @@ const (
 	MsgOther
 )
 
-// Message is one server Message with its body consumed.
+// Message is one server message with its body consumed.
 type Message struct {
 	Kind    Kind
 	Line    string
@@ -97,7 +97,7 @@ func IsReply(line string) bool {
 		strings.HasPrefix(line, "ok ") || strings.HasPrefix(line, "err ")
 }
 
-// AwaitResult skips pushes until a Reply line.
+// AwaitResult skips pushes until a reply line.
 func AwaitResult(r *bufio.Reader) (string, error) {
 	for {
 		m, err := ReadMessage(r)
