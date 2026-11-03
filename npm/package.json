@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/kimjungminn24/pixel-duet.git"
   },
-  "keywords": ["pixel-art", "claude", "claude-code", "terminal", "canvas"],
+  "keywords": ["mcp", "mcp-server", "model-context-protocol", "pixel-art", "claude", "claude-code", "codex", "canvas", "ai-drawing"],
   "bin": {
     "pixelduet": "bin/pixelduet.js"
   },

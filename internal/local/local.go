@@ -65,7 +65,7 @@ func Run(addr, httpAddr string, size int, maxWait time.Duration, sprites string,
 	fmt.Printf("pixelduet %s\n\n", version)
 	fmt.Printf("  canvas server   %s\n", l.Addr)
 	fmt.Printf("  browser viewer  %s\n", l.URL())
-	fmt.Printf("  let Claude in   claude mcp add pixelduet -- npx -y pixelduet bridge\n")
+	fmt.Printf("  let Claude in   claude mcp add -s user pixelduet -- npx -y pixelduet bridge\n")
 	fmt.Printf("  stop            ctrl-c\n")
 	if browser {
 		openBrowser(l.URL())

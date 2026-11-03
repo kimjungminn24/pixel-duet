@@ -10,11 +10,13 @@ it. Node 18 or newer is required.
 
     npx -y pixelduet                # canvas server + browser viewer, opens the viewer
 
-Let Claude Code in, once:
+Let Claude Code in, once, for every project:
 
-    claude mcp add pixelduet -- npx -y pixelduet bridge
+    claude mcp add -s user pixelduet -- npx -y pixelduet bridge
 
 If nothing is running when a session starts, the bridge starts the
-servers itself, so that one line is the whole setup.
+servers itself, so that one line is the whole setup. Then ask Claude:
+
+    Draw a frog on pixelduet.
 
 Source and docs are in the repository.
