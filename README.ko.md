@@ -24,9 +24,15 @@
 
 Claude Code는 한 번만 연결합니다.
 
-    claude mcp add pixelduet -- npx -y pixelduet bridge
+    claude mcp add -s user pixelduet -- npx -y pixelduet bridge
 
-세션 시작 시 실행 중인 서버가 없으면 브리지가 직접 띄웁니다.
+`-s user`를 붙여야 모든 프로젝트에서 쓸 수 있습니다. 빼면 명령을 실행한 폴더에서만 연결됩니다.
+
+세션 시작 시 실행 중인 서버가 없으면 브리지가 직접 띄웁니다. 이제 Claude에게 그림을 부탁합니다.
+
+    pixelduet에 개구리 그려줘
+
+브라우저에 뷰어가 열려 있지 않으면 Claude가 주소를 알려줍니다.
 
 이 저장소를 체크아웃했다면 `go run .`이 `npx -y pixelduet`을 대신하고, Claude Code는 `.mcp.json`에서 브리지를 읽습니다.
 

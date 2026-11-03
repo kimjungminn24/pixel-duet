@@ -27,10 +27,18 @@ starts the canvas server and the browser viewer and opens the viewer.
 
 Connect Claude Code once:
 
-    claude mcp add pixelduet -- npx -y pixelduet bridge
+    claude mcp add -s user pixelduet -- npx -y pixelduet bridge
+
+`-s user` makes it available in every project. Without it the bridge
+is only there in the folder you ran the command in.
 
 If nothing is running when a session starts, the bridge starts the
-servers itself.
+servers itself. Then ask Claude for a drawing:
+
+    Draw a frog on pixelduet.
+
+Claude tells you the viewer's address if your browser is not open on
+it yet.
 
 In a checkout of this repository, `go run .` replaces `npx -y pixelduet`
 and Claude Code picks the bridge up from `.mcp.json`.
