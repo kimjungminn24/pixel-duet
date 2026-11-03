@@ -116,6 +116,16 @@ Notes queue up in order. The model answers in the same log with `say`.
   silhouette first, check the picture after every step, one light
   source, ask before going on. See internal/bridge/rules.go.
 
+## Keeping it small
+
+- `read_pixels` compresses with run-length encoding when that comes out
+  shorter: a run of one color becomes `4*16`, and identical rows fold
+  into `y3-9:`. The 128x128 frog goes from 16,512 characters to 3,760,
+  under a quarter.
+- Lines, rectangles and ellipses take two corners or a center and two
+  radii. A filled circle can cover hundreds of pixels and the model
+  still sends four numbers.
+
 ## How it fits together
 
     pixelduet serve            owns the canvas
