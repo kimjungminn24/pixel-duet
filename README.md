@@ -7,7 +7,7 @@ by stroke while you watch in the browser. Pause it, take the brush,
 change things, leave a note, and hand the brush back. The reply to its
 next stroke tells it what you did.
 
-![The model draws a frog step by step, the person pauses to add a bow tie, and the model finishes it](docs/demo.gif)
+![The model draws a potion flask stroke by stroke, the person pauses it, fills the liquid pink and leaves a note, and the model shades around the change and finishes](docs/demo.gif)
 
 ## Install
 
