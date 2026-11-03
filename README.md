@@ -25,6 +25,17 @@ or download a binary from the Releases page. Linux, macOS and Windows.
 
 starts the canvas server and the browser viewer and opens the viewer.
 
+The browser is your side. Claude can't look at a web page, so it gets
+its own way in: the bridge, an MCP server that hands it tools like
+`draw_line` and `read_pixels`. Both reach the same canvas, and a stroke
+from one side shows up on the other.
+
+        you, in the browser             Claude Code
+                 |                           |
+               HTTP                   MCP (pixelduet bridge)
+                 |                           |
+                 `-----> canvas server <-----'
+
 Connect Claude Code once:
 
     claude mcp add -s user pixelduet -- npx -y pixelduet bridge

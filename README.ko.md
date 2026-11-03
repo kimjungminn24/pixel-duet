@@ -22,6 +22,14 @@
 
 캔버스 서버와 브라우저 뷰어를 띄우고 뷰어를 엽니다.
 
+브라우저는 사람 쪽 화면입니다. Claude는 웹 페이지를 볼 수 없어서 따로 들어오는 길이 있습니다. 브리지라는 MCP 서버가 `draw_line`, `read_pixels` 같은 도구를 Claude에게 줍니다. 둘은 같은 캔버스에 닿아 있어서, 한쪽이 그은 획이 다른 쪽에도 바로 보입니다.
+
+        사람 (브라우저)                 Claude Code
+              |                              |
+            HTTP                     MCP (pixelduet bridge)
+              |                              |
+              `------> 캔버스 서버 <---------'
+
 Claude Code는 한 번만 연결합니다.
 
     claude mcp add -s user pixelduet -- npx -y pixelduet bridge
