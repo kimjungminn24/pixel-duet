@@ -84,3 +84,38 @@ jobs:
         run: |
           npm version "${GITHUB_REF_NAME#v}" --no-git-tag-version
           npm publish --access public
+
+  # Lists the server in the MCP Registry once npm has the version it points to.
+  # GitHub OIDC proves ownership of io.github.kimjungminn24/*, and the registry
+  # checks mcpName in npm/package.json against the name in server.json.
+  mcp-registry:
+    needs: npm
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      MCP_PUBLISHER_VERSION: v1.8.1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+      - name: install mcp-publisher
+        run: |
+          set -euo pipefail
+          archive=mcp-publisher_linux_amd64.tar.gz
+          base=https://github.com/modelcontextprotocol/registry/releases/download/$MCP_PUBLISHER_VERSION
+          curl -fsSL -o "$archive" "$base/$archive"
+          curl -fsSL -o "$archive.sigstore.json" "$base/$archive.sigstore.json"
+          cosign verify-blob \
+            --bundle "$archive.sigstore.json" \
+            --certificate-identity "https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/$MCP_PUBLISHER_VERSION" \
+            --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+            "$archive"
+          tar xzf "$archive" mcp-publisher
+      - name: publish
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          jq --arg v "$v" '.version = $v | .packages[0].version = $v' server.json > server.tmp
+          mv server.tmp server.json
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

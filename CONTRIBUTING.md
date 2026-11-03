@@ -41,3 +41,6 @@ The release workflow runs the tests, builds binaries for six platforms,
 creates the GitHub Release, and publishes the npm package through
 Trusted Publishing. No secrets are involved: npmjs.com is configured
 to accept release.yml from this repository as the package's publisher.
+It then lists the server in the MCP Registry from server.json, signing
+in with the workflow's GitHub OIDC token. The versions in server.json
+and npm/package.json stay 0.0.0 in the repository; the tag sets them.
