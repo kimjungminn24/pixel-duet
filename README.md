@@ -7,7 +7,7 @@ by stroke while you watch in the browser. Pause it, take the brush,
 change things, leave a note, and hand the brush back. The reply to its
 next stroke tells it what you did.
 
-![The model draws a frog step by step, the person pauses to add a bow tie, and the model finishes it](docs/demo.gif)
+![The model draws a potion flask stroke by stroke, the person pauses it, fills the liquid pink and leaves a note, and the model shades around the change and finishes](docs/demo.gif)
 
 ## Install
 
@@ -24,6 +24,17 @@ or download a binary from the Releases page. Linux, macOS and Windows.
     npx -y pixelduet
 
 starts the canvas server and the browser viewer and opens the viewer.
+
+The browser is your side. Claude can't look at a web page, so it gets
+its own way in: the bridge, an MCP server that hands it tools like
+`draw_line` and `read_pixels`. Both reach the same canvas, and a stroke
+from one side shows up on the other.
+
+        you, in the browser             Claude Code
+                 |                           |
+               HTTP                   MCP (pixelduet bridge)
+                 |                           |
+                 `-----> canvas server <-----'
 
 Connect Claude Code once:
 

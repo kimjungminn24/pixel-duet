@@ -1,6 +1,6 @@
 export const DIGITS = "0123456789abcdefghijklmnopqrstuvw";
 
-export const CHECKER = ["#e5e2e8", "#cbc6d1"];
+export const CHECKER = ["#e5e5e5", "#cccccc"];
 
 export const SPRITE_NAME = /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$/;
 
