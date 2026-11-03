@@ -117,5 +117,10 @@ jobs:
           v="${GITHUB_REF_NAME#v}"
           jq --arg v "$v" '.version = $v | .packages[0].version = $v' server.json > server.tmp
           mv server.tmp server.json
+          # npm takes a few minutes to serve a new version, and the registry checks it is there.
+          for i in $(seq 1 30); do
+            curl -fs -o /dev/null "https://registry.npmjs.org/pixelduet/$v" && break
+            sleep 20
+          done
           ./mcp-publisher login github-oidc
           ./mcp-publisher publish
