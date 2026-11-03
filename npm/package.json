@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "A pixel canvas a model and a person share. Claude draws it stroke by stroke while you watch, pause, edit and talk.",
   "license": "MIT",
+  "mcpName": "io.github.kimjungminn24/pixel-duet",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kimjungminn24/pixel-duet.git"

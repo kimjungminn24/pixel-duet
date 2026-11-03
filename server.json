@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kimjungminn24/pixel-duet",
+  "title": "pixelduet",
+  "description": "A pixel canvas you share with the model: watch it draw live, pause, edit, and hand the brush back.",
+  "repository": {
+    "url": "https://github.com/kimjungminn24/pixel-duet",
+    "source": "github"
+  },
+  "version": "0.0.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "pixelduet",
+      "version": "0.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "bridge"
+        }
+      ]
+    }
+  ]
+}
