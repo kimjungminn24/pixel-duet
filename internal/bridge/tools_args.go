@@ -23,13 +23,13 @@ type point struct {
 }
 
 type strokeArgs struct {
-	Color  int     `json:"color" jsonschema:"palette index 1-32, or 0 to erase"`
+	Color  int     `json:"color" jsonschema:"palette number 1-32 (digit a is 10, w is 32), or 0 to erase"`
 	Points []point `json:"points" jsonschema:"pixels this one stroke covers"`
 	Mirror bool    `json:"mirror,omitempty" jsonschema:"also paint the mirrored side"`
 }
 
 type lineArgs struct {
-	Color  int  `json:"color" jsonschema:"palette index 1-32, or 0 to erase"`
+	Color  int  `json:"color" jsonschema:"palette number 1-32 (digit a is 10, w is 32), or 0 to erase"`
 	X0     int  `json:"x0" jsonschema:"start column"`
 	Y0     int  `json:"y0" jsonschema:"start row"`
 	X1     int  `json:"x1" jsonschema:"end column"`
@@ -38,7 +38,7 @@ type lineArgs struct {
 }
 
 type rectArgs struct {
-	Color  int  `json:"color" jsonschema:"palette index 1-32, or 0 to erase"`
+	Color  int  `json:"color" jsonschema:"palette number 1-32 (digit a is 10, w is 32), or 0 to erase"`
 	X0     int  `json:"x0" jsonschema:"one corner's column"`
 	Y0     int  `json:"y0" jsonschema:"one corner's row"`
 	X1     int  `json:"x1" jsonschema:"the opposite corner's column, inclusive"`
@@ -48,7 +48,7 @@ type rectArgs struct {
 }
 
 type ellipseArgs struct {
-	Color  int     `json:"color" jsonschema:"palette index 1-32, or 0 to erase"`
+	Color  int     `json:"color" jsonschema:"palette number 1-32 (digit a is 10, w is 32), or 0 to erase"`
 	CX     float64 `json:"cx" jsonschema:"center column, halves allowed"`
 	CY     float64 `json:"cy" jsonschema:"center row, halves allowed"`
 	RX     float64 `json:"rx" jsonschema:"horizontal radius, halves allowed"`
@@ -60,7 +60,7 @@ type ellipseArgs struct {
 type fillArgs struct {
 	X     int `json:"x" jsonschema:"column to start the fill from"`
 	Y     int `json:"y" jsonschema:"row to start the fill from"`
-	Color int `json:"color" jsonschema:"palette index to fill with"`
+	Color int `json:"color" jsonschema:"palette number 1-32 (digit a is 10, w is 32)"`
 }
 
 type shadeArgs struct {
@@ -74,14 +74,14 @@ type highlightArgs struct {
 }
 
 type outlineArgs struct {
-	Color int  `json:"color,omitempty" jsonschema:"palette index to ring in; omit for each shape's own darker shade"`
+	Color int  `json:"color,omitempty" jsonschema:"palette number to ring in (digit a is 10); omit for each shape's own darker shade"`
 	Off   bool `json:"off,omitempty" jsonschema:"take the outline back off instead of putting one on"`
 	region
 }
 
 type ditherArgs struct {
-	From int `json:"from" jsonschema:"the color to thin out"`
-	To   int `json:"to" jsonschema:"the color to mix in on every other pixel"`
+	From int `json:"from" jsonschema:"palette number to thin out (digit a is 10)"`
+	To   int `json:"to" jsonschema:"palette number to mix in on every other pixel"`
 	X    int `json:"x" jsonschema:"left column of the strip to dither"`
 	Y    int `json:"y" jsonschema:"top row of the strip"`
 	W    int `json:"w" jsonschema:"width of the strip"`

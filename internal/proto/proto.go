@@ -234,6 +234,11 @@ func ParseSpeed(line string) (time.Duration, error) {
 	return time.Duration(ms) * time.Millisecond, nil
 }
 
+// EncodeSay folds line breaks into spaces, because a newline would start a second command.
+func EncodeSay(text string) string {
+	return "say " + strings.Join(strings.Fields(text), " ")
+}
+
 func EncodeStroke(color uint8, pts [][2]int) string {
 	var b strings.Builder
 	fmt.Fprintf(&b, "stroke %d", color)
