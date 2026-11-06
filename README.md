@@ -2,6 +2,12 @@
 
 [한국어](README.ko.md)
 
+<p align="center">
+  <a href="https://mcprush.com/to/pixelduet-mcp?ref=badge">
+    <img src="https://mcprush.com/badge/pixelduet-mcp/card.svg" alt="pixelduet MCP server">
+  </a>
+</p>
+
 A pixel canvas shared by a model and a person. The model draws stroke
 by stroke while you watch in the browser. Pause it, take the brush,
 change things, leave a note, and hand the brush back. The reply to its
