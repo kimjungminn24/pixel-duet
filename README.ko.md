@@ -2,12 +2,6 @@
 
 [English](README.md)
 
-<p align="center">
-  <a href="https://mcprush.com/to/pixelduet-mcp?ref=badge">
-    <img src="https://mcprush.com/badge/pixelduet-mcp/card.svg" alt="pixelduet MCP server">
-  </a>
-</p>
-
 모델과 사람이 함께 쓰는 픽셀 캔버스입니다. 모델이 브라우저에 한 획씩 그리는 동안 지켜보다가, 멈추고 붓을 가져가 고치고 메모를 남긴 뒤 붓을 돌려줍니다. 모델은 다음 획의 응답으로 당신이 한 일을 알게 됩니다.
 
 ![모델이 물약병을 한 획씩 그리고, 사람이 멈춰서 물약을 분홍색으로 칠하고 메모를 남기면, 모델이 바뀐 색에 맞춰 음영을 넣고 마무리하는 장면](docs/demo.gif)
@@ -137,3 +131,5 @@ MCP 없이도 TCP 소켓을 열 수 있는 것이면 무엇이든 그릴 수 있
 ## 라이선스
 
 MIT. [LICENSE](LICENSE) 참고.
+
+[![pixelduet MCP server](https://mcprush.com/badge/pixelduet-mcp/card.svg)](https://mcprush.com/to/pixelduet-mcp?ref=badge)
