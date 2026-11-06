@@ -79,7 +79,6 @@ func (b *bridge) register(s *mcp.Server) {
 		"transparent. Never use it to erase what the person drew."}, b.clearCanvas)
 }
 
-// reportDraw turns a reply line into the tool result the model reads.
 func (b *bridge) reportDraw(res string) (*mcp.CallToolResult, any, error) {
 	if res == "paused" {
 		return textResult("The canvas is paused and the wait window ran out. " +

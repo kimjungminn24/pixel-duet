@@ -252,6 +252,10 @@ func serveCmd(w http.ResponseWriter, r *http.Request, addr string) {
 		http.Error(w, "empty command", http.StatusBadRequest)
 		return
 	}
+	if strings.ContainsAny(line, "\r\n") {
+		http.Error(w, "one command per request", http.StatusBadRequest)
+		return
+	}
 	conn, br, err := dialHub(addr)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadGateway)

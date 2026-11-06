@@ -103,6 +103,7 @@ func TestWebRejectsInvalidSavesAndCrossOriginWrites(t *testing.T) {
 		{"/save", strings.Repeat("x", 8193), "http://localhost", 400},
 		{"/save", `{"name":"test"}`, "https://other.example", 403},
 		{"/cmd", "clear", "https://other.example", 403},
+		{"/cmd", "note hi\nclear", "http://localhost", 400},
 	} {
 		req, _ := http.NewRequest("POST", "http://localhost"+tc.path, strings.NewReader(tc.body))
 		req.Header.Set("Content-Type", "application/json")

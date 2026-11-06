@@ -98,10 +98,9 @@ func (b *bridge) clearCanvas(ctx context.Context, req *mcp.CallToolRequest, in a
 	return b.reportDraw(res)
 }
 
-// paint sends one stroke; every shape tool ends here.
 func (b *bridge) paint(color int, pts [][2]int, mirror bool) (*mcp.CallToolResult, any, error) {
-	if !canvas.ValidColor(color) {
-		return nil, nil, fmt.Errorf("color %d is not a palette index", color)
+	if err := checkColor(color); err != nil {
+		return nil, nil, err
 	}
 	if len(pts) == 0 {
 		return nil, nil, fmt.Errorf("a stroke needs at least one point")
@@ -122,8 +121,8 @@ func (b *bridge) paint(color int, pts [][2]int, mirror bool) (*mcp.CallToolResul
 }
 
 func (b *bridge) outline(ctx context.Context, req *mcp.CallToolRequest, in outlineArgs) (*mcp.CallToolResult, any, error) {
-	if !canvas.ValidColor(in.Color) {
-		return nil, nil, fmt.Errorf("color %d is not a palette index", in.Color)
+	if err := checkColor(in.Color); err != nil {
+		return nil, nil, err
 	}
 	c, _, _, err := b.conn.canvas()
 	if err != nil {
@@ -161,8 +160,8 @@ func (b *bridge) highlight(ctx context.Context, req *mcp.CallToolRequest, in hig
 
 func (b *bridge) dither(ctx context.Context, req *mcp.CallToolRequest, in ditherArgs) (*mcp.CallToolResult, any, error) {
 	for _, col := range []int{in.From, in.To} {
-		if !canvas.ValidColor(col) {
-			return nil, nil, fmt.Errorf("color %d is not a palette index", col)
+		if err := checkColor(col); err != nil {
+			return nil, nil, err
 		}
 	}
 	if in.W <= 0 || in.H <= 0 {
@@ -175,6 +174,13 @@ func (b *bridge) dither(ctx context.Context, req *mcp.CallToolRequest, in dither
 	return b.finish("dithered", canvas.DitherStrokes(c, canvas.Rect{X: in.X, Y: in.Y, W: in.W, H: in.H}, uint8(in.From), uint8(in.To)))
 }
 
+func checkColor(color int) error {
+	if !canvas.ValidColor(color) {
+		return fmt.Errorf("color %d is not a palette number 0-32", color)
+	}
+	return nil
+}
+
 func (b *bridge) light(name string) (dx, dy int, err error) {
 	dx, dy, ok := canvas.LightDir(name)
 	if !ok {
@@ -183,7 +189,7 @@ func (b *bridge) light(name string) (dx, dy int, err error) {
 	return dx, dy, nil
 }
 
-// finish sends strokes one per color. A reply carrying edits or a note wins over the pixel count.
+// A reply carrying edits or a note wins over the pixel count.
 func (b *bridge) finish(what string, strokes []canvas.Stroke) (*mcp.CallToolResult, any, error) {
 	total, held := 0, ""
 	for _, s := range strokes {
@@ -256,13 +262,12 @@ func (b *bridge) stamp(ctx context.Context, req *mcp.CallToolRequest, in stampAr
 }
 
 func (b *bridge) say(ctx context.Context, req *mcp.CallToolRequest, in sayArgs) (*mcp.CallToolResult, any, error) {
-	if _, err := b.conn.cmd("say " + in.Text); err != nil {
+	if _, err := b.conn.cmd(proto.EncodeSay(in.Text)); err != nil {
 		return nil, nil, err
 	}
 	return textResult("said"), nil, nil
 }
 
-// listen blocks until the person speaks or the server's wait window ends.
 func (b *bridge) listen(ctx context.Context, req *mcp.CallToolRequest, in any) (*mcp.CallToolResult, any, error) {
 	res, err := b.conn.cmd("listen")
 	if err != nil {
