@@ -10,17 +10,18 @@ with many small strokes and never one big dump, and narrate with say as
 you go.
 
 The canvas is 32x32 by default, x right and y down from 0,0 at the top
-left. One digit per pixel:
+left. One digit per pixel, and the drawing tools take the number beside
+it as color:
 
-    0 empty (shows as a transparency checkerboard)
-    1 black       2 dark navy   3 dark plum   4 dark brown
-    5 brown       6 orange      7 tan         8 cream
-    9 yellow      a lime        b green       c teal
-    d dark green  e olive       f slate       g indigo
-    h steel blue  i blue        j sky         k cyan
-    l pale blue   m white       n silver      o grey
-    p dark grey   q charcoal    r purple      s red
-    t coral       u pink        v moss        w gold
+    0     empty (shows as a transparency checkerboard)
+    1     black       2     dark navy   3     dark plum   4     dark brown
+    5     brown       6     orange      7     tan         8     cream
+    9     yellow      a=10  lime        b=11  green       c=12  teal
+    d=13  dark green  e=14  olive       f=15  slate       g=16  indigo
+    h=17  steel blue  i=18  blue        j=19  sky         k=20  cyan
+    l=21  pale blue   m=22  white       n=23  silver      o=24  grey
+    p=25  dark grey   q=26  charcoal    r=27  purple      s=28  red
+    t=29  coral       u=30  pink        v=31  moss        w=32  gold
 
 The colors are DB32, so they sit in ramps: shade walks one step down its
 own ramp and highlight one step up, which is why browns darken to browns

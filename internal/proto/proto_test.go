@@ -62,6 +62,12 @@ func TestParseReplyKeepsFieldsApartFromTheNote(t *testing.T) {
 	}
 }
 
+func TestEncodeSayStaysOnOneLine(t *testing.T) {
+	if got := EncodeSay("hello\nclear\r\n  again"); got != "say hello clear again" {
+		t.Fatalf("EncodeSay = %q", got)
+	}
+}
+
 func TestStrokeRoundTrip(t *testing.T) {
 	pts := [][2]int{{1, 2}, {3, 4}}
 	line := EncodeStroke(7, pts)

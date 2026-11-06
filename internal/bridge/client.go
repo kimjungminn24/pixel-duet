@@ -45,7 +45,7 @@ func (d *hubConn) send(line string) error {
 	return d.w.Flush()
 }
 
-// cmd sends one line and waits for its reply, which may take a while during a pause.
+// The reply can take as long as the person keeps the canvas paused.
 func (d *hubConn) cmd(line string) (string, error) {
 	d.mu.Lock()
 	defer d.mu.Unlock()
